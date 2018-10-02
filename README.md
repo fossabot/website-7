@@ -1,3 +1,5 @@
-PaderbornJS Website
+# PaderbornJS website
+Based on [Gatsby](https://www.gatsbyjs.org/).
 
-Based on Gatsby
+## Running in development
+`gatsby develop`
