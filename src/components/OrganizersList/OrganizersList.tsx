@@ -51,7 +51,7 @@ class OrganizerList extends Component {
                     description,
                     twitter: { name: handle, profileImageUrl },
                   },
-                  i,
+                  i
                 ) => (
                   <li key={i}>
                     {name}
@@ -66,7 +66,7 @@ class OrganizerList extends Component {
                     />
                     <hr />
                   </li>
-                ),
+                )
               )}
             </ol>
           )
