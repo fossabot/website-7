@@ -6,6 +6,7 @@ import { BatchHttpLink } from 'apollo-link-batch-http'
 import { onError } from 'apollo-link-error'
 import React, { Component } from 'react'
 import { ApolloProvider } from 'react-apollo'
+import { Helmet } from 'react-helmet'
 import HomePage from '../HomePage/HomePage'
 import WipPage from '../WipPage/WipPage'
 
@@ -38,6 +39,7 @@ class App extends Component {
   public render() {
     return (
       <ApolloProvider client={client}>
+        <Helmet defaultTitle="Paderborn.JS" titleTemplate="%s – Paderborn.JS" />
         <Router>
           <HomePage path="/" />
           <WipPage path="/wip" />
