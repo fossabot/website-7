@@ -1,0 +1,8 @@
+{
+  "allowParens": "always",
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "parser": "typescript",
+  "printWidth": 80,
+  "semi": false
+}
