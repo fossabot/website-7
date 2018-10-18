@@ -9,11 +9,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 module.exports = {
   webpack: function(config, env) {
-    const ifEnv = check => (ifBranch, elseBranch = null) =>
-      env === check ? ifBranch : elseBranch
-    const ifDev = ifEnv('development')
-    const ifProd = ifEnv('production')
-
     config = rewireTypescript(config)
     config = rewireTSLint(config /* {} - optional tslint-loader options */)
     if (env === 'production' || env === 'test') {
@@ -24,16 +19,18 @@ module.exports = {
 
     return {
       ...config,
-      ...ifDev({ devtool: 'source-map' }),
+      ...(env === 'development' ? { devtool: 'source-map' } : {}),
       plugins: [
         ...config.plugins,
-        ...ifProd([
-          new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            openAnalyzer: false,
-            reportFilename: 'bundle-report.html',
-          }),
-        ]),
+        ...(env === 'production'
+          ? [
+              new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+                reportFilename: 'bundle-report.html',
+              }),
+            ]
+          : []),
       ],
     }
   },
