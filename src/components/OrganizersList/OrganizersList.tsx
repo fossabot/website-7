@@ -2,6 +2,7 @@ import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import styled from 'react-emotion'
+import ContentContainer from '../ContentContainer/ContentContainer'
 import GlitchImage, { IGlitchImageProps } from '../GlitchImage/GlitchImage'
 import Loader from '../Loader/Loader'
 import SubHeadline from '../SubHeadline/SubHeadline'
@@ -15,33 +16,53 @@ interface IOrganizer {
   }
 }
 
-const Name = styled.h3`
-  font-size: 2.6rem;
-  font-weight: 400;
-  color: #fff;
-  margin: 0;
-  margin-bottom: 1.8rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`
-
 const List = styled.ol`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const ListItem = styled.li`
-  padding: 0 1rem;
-  width: 33.333333%;
-  display: inline-block;
   vertical-align: top;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  @media (min-width: 550px) and (max-width: 749px) {
+    width: 49%;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    &:nth-of-type(2n + 1) {
+      margin-left: 0;
+      margin-right: 1%;
+    }
+    &:nth-of-type(2n) {
+      margin-left: 1%;
+      margin-right: 0;
+    }
+  }
+
+  @media (min-width: 750px) {
+    width: 32%;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    &:nth-of-type(3n + 1) {
+      margin-left: 0;
+      margin-right: 1%;
+    }
+    &:nth-of-type(3n) {
+      margin-left: 1%;
+      margin-right: 0;
+    }
+  }
 `
 
 const ListItemContent = styled.div`
   background: #f3f9fb;
-  margin-bottom: 4rem;
+  height: 100%;
 `
 
 const Description = styled.p`
@@ -52,7 +73,6 @@ const Description = styled.p`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: -4rem;
   z-index: 2;
   position: relative;
   padding: 0 1rem 1.4rem 1rem;
@@ -61,6 +81,7 @@ const TextContainer = styled.div`
 const OrganizerListContainer = styled.section`
   display: flex;
   flex-direction: column;
+  background: #d6e5ea;
 `
 
 const TwitterLink: React.SFC<{ handle: string }> = ({ handle }) => (
@@ -70,7 +91,8 @@ const TwitterLink: React.SFC<{ handle: string }> = ({ handle }) => (
       color: #0662f1;
       font-weight: 500;
       text-decoration: none;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
     `}
   >
     @{handle}
@@ -86,59 +108,61 @@ class OrganizerList extends Component {
   public render() {
     return (
       <OrganizerListContainer>
-        <SubHeadline>Organizers</SubHeadline>
-        <Query<{ organizers: IOrganizer[] }>
-          pollInterval={3600000}
-          query={gql`
-            query {
-              organizers {
-                name
-                description
-                twitter {
+        <ContentContainer>
+          <SubHeadline>Organizers</SubHeadline>
+          <Query<{ organizers: IOrganizer[] }>
+            pollInterval={3600000}
+            query={gql`
+              query {
+                organizers {
                   name
-                  profileImageUrl
+                  description
+                  twitter {
+                    name
+                    profileImageUrl
+                  }
                 }
               }
-            }
-          `}
-        >
-          {({ loading, error, data }) => {
-            if (loading || !data) {
-              return <Loader text="Fetching organizers..." />
-            }
-            if (error) {
-              return `error: ${error.message}`
-            }
-            return (
-              <List>
-                {data.organizers.map(
-                  (
-                    {
-                      name,
-                      description,
-                      twitter: { name: handle, profileImageUrl },
-                    },
-                    i
-                  ) => (
-                    <ListItem key={i}>
-                      <ListItemContent>
-                        <Image
-                          src={profileImageUrl}
-                          alt={`twitter profile image of @${handle}`}
-                        />
-                        <TextContainer>
-                          <Name>{name}</Name>
-                          <TwitterLink handle={handle} />
-                          <Description>{description}</Description>
-                        </TextContainer>
-                      </ListItemContent>
-                    </ListItem>
-                  )
-                )}
-              </List>
-            )
-          }}
-        </Query>
+            `}
+          >
+            {({ loading, error, data }) => {
+              if (loading || !data) {
+                return <Loader text="Fetching organizers..." />
+              }
+              if (error) {
+                return `error: ${error.message}`
+              }
+              return (
+                <List>
+                  {data.organizers.map(
+                    (
+                      {
+                        name,
+                        description,
+                        twitter: { name: handle, profileImageUrl },
+                      },
+                      i
+                    ) => (
+                      <ListItem key={i}>
+                        <ListItemContent>
+                          <Image
+                            src={profileImageUrl}
+                            text={name}
+                            alt={`twitter profile image of @${handle}`}
+                          />
+                          <TextContainer>
+                            <TwitterLink handle={handle} />
+                            <Description>{description}</Description>
+                          </TextContainer>
+                        </ListItemContent>
+                      </ListItem>
+                    )
+                  )}
+                </List>
+              )
+            }}
+          </Query>
+        </ContentContainer>
       </OrganizerListContainer>
     )
   }

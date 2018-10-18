@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
+import ContentContainer from '../ContentContainer/ContentContainer'
 import { ReactComponent as JavaScriptLogo } from './javascript.svg'
 
 const Logo = styled(JavaScriptLogo)`
-  width: 100px;
+  width: 6rem;
   margin-left: 1em;
+
+  @media (min-width: 550px) {
+    width: 8rem;
+  }
+  @media (min-width: 750px) {
+    width: 10rem;
+  }
 `
 
 const LogoContainer = styled.header`
@@ -16,16 +24,23 @@ const LogoContainer = styled.header`
 `
 
 const Headline = styled.h1`
-  font-size: 6rem;
+  font-size: 3.5rem;
   font-weight: 400;
   text-transform: uppercase;
   margin: 0;
+
+  @media (min-width: 550px) {
+    font-size: 5rem;
+  }
+  @media (min-width: 750px) {
+    font-size: 6rem;
+  }
 `
 
 class Header extends Component {
   public render() {
     return (
-      <>
+      <ContentContainer>
         <LogoContainer>
           <Headline>Paderborn</Headline>
           <Logo />
@@ -37,7 +52,7 @@ class Header extends Component {
         >
           Website coming soon!
         </p>
-      </>
+      </ContentContainer>
     )
   }
 }

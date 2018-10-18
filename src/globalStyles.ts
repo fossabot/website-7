@@ -19,5 +19,6 @@ export default injectGlobal`
     color: #175377;
     background: #e9f2f5;
     font-size: 1.6rem;
+    overflow-x: hidden;
   }
  `
