@@ -7,10 +7,10 @@ const Logo = styled(JavaScriptLogo)`
   width: 6rem;
   margin-left: 1em;
 
-  @media (min-width: 550px) {
+  @media (min-width: 550px) and (max-width: 799px) {
     width: 8rem;
   }
-  @media (min-width: 750px) {
+  @media (min-width: 800px) {
     width: 10rem;
   }
 `
@@ -29,10 +29,10 @@ const Headline = styled.h1`
   text-transform: uppercase;
   margin: 0;
 
-  @media (min-width: 550px) {
+  @media (min-width: 550px) and (max-width: 799px) {
     font-size: 5rem;
   }
-  @media (min-width: 750px) {
+  @media (min-width: 800px) {
     font-size: 6rem;
   }
 `

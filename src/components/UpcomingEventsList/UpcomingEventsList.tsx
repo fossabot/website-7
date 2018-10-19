@@ -2,22 +2,9 @@ import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import styled from 'react-emotion'
+import IEvent from '../../interfaces/IEvent'
 import Loader from '../Loader/Loader'
 import SubHeadline from '../SubHeadline/SubHeadline'
-
-interface IEvent {
-  date: Date
-  goingCount: number
-  url: string
-  venue: {
-    city: string
-    country: string
-    lat: number
-    lon: number
-    name: string
-    street: string
-  }
-}
 
 const UpcomingEventsListContainer = styled.section`
   display: flex;

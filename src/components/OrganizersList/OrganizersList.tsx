@@ -1,169 +1,89 @@
 import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import styled from 'react-emotion'
+import { PoseGroup } from 'react-pose'
+import IOrganizer from '../../interfaces/IOrganizer'
 import ContentContainer from '../ContentContainer/ContentContainer'
-import GlitchImage, { IGlitchImageProps } from '../GlitchImage/GlitchImage'
 import Loader from '../Loader/Loader'
+import OrganizerCard from '../OrganizerCard/OrganizerCard'
 import SubHeadline from '../SubHeadline/SubHeadline'
+import { List, ListItem } from './OrganizerList.styles'
 
-interface IOrganizer {
-  name: string
-  description: string
-  twitter: {
-    name: string
-    profileImageUrl: string
-  }
-}
-
-const List = styled.ol`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-`
-
-const ListItem = styled.li`
-  vertical-align: top;
-  margin-bottom: 2rem;
-  width: 100%;
-
-  @media (min-width: 550px) and (max-width: 749px) {
-    width: 49%;
-    margin-left: 1%;
-    margin-right: 1%;
-
-    &:nth-of-type(2n + 1) {
-      margin-left: 0;
-      margin-right: 1%;
-    }
-    &:nth-of-type(2n) {
-      margin-left: 1%;
-      margin-right: 0;
+const organizerQuery = gql`
+  query {
+    organizers {
+      name
+      description
+      twitter {
+        name
+        profileImageUrl
+      }
     }
   }
-
-  @media (min-width: 750px) {
-    width: 32%;
-    margin-left: 1%;
-    margin-right: 1%;
-
-    &:nth-of-type(3n + 1) {
-      margin-left: 0;
-      margin-right: 1%;
-    }
-    &:nth-of-type(3n) {
-      margin-left: 1%;
-      margin-right: 0;
-    }
-  }
-`
-
-const ListItemContent = styled.div`
-  background: #f3f9fb;
-  height: 100%;
-`
-
-const Description = styled.p`
-  margin: 0;
-  font-size: 1.4rem;
-`
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  position: relative;
-  padding: 0 1rem 1.4rem 1rem;
-`
-
-const OrganizerListContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  background: #d6e5ea;
-`
-
-const TwitterLink: React.SFC<{ handle: string }> = ({ handle }) => (
-  <a
-    href={`http://twitter.com/${handle}`}
-    css={`
-      color: #0662f1;
-      font-weight: 500;
-      text-decoration: none;
-      margin-bottom: 0.5rem;
-      margin-top: 1rem;
-    `}
-  >
-    @{handle}
-  </a>
-)
-
-const Image = styled(GlitchImage)<IGlitchImageProps>`
-  width: 100%;
-  height: 30rem;
 `
 
 class OrganizerList extends Component {
+  public state = {
+    profileImagesLoaded: false,
+  }
+
   public render() {
+    const { profileImagesLoaded } = this.state
+
     return (
-      <OrganizerListContainer>
-        <ContentContainer>
-          <SubHeadline>Organizers</SubHeadline>
-          <Query<{ organizers: IOrganizer[] }>
-            pollInterval={3600000}
-            query={gql`
-              query {
-                organizers {
-                  name
-                  description
-                  twitter {
-                    name
-                    profileImageUrl
-                  }
-                }
-              }
-            `}
-          >
-            {({ loading, error, data }) => {
-              if (loading || !data) {
-                return <Loader text="Fetching organizers..." />
-              }
-              if (error) {
-                return `error: ${error.message}`
-              }
-              return (
-                <List>
-                  {data.organizers.map(
-                    (
-                      {
-                        name,
-                        description,
-                        twitter: { name: handle, profileImageUrl },
-                      },
-                      i
-                    ) => (
-                      <ListItem key={i}>
-                        <ListItemContent>
-                          <Image
-                            src={profileImageUrl}
-                            text={name}
-                            alt={`twitter profile image of @${handle}`}
-                          />
-                          <TextContainer>
-                            <TwitterLink handle={handle} />
-                            <Description>{description}</Description>
-                          </TextContainer>
-                        </ListItemContent>
-                      </ListItem>
-                    )
-                  )}
-                </List>
+      <ContentContainer>
+        <SubHeadline>Organizers</SubHeadline>
+        <Query<{ organizers: IOrganizer[] }>
+          pollInterval={3600000}
+          query={organizerQuery}
+        >
+          {({
+            loading,
+            error,
+            data: { organizers = [] } = { organizers: [] },
+          }) => {
+            // organizer profile pictures are not loaded, so we act as if
+            // no organizer information is available until they are
+            if (organizers.length && !profileImagesLoaded) {
+              this.loadProfileImages(organizers).then(() =>
+                this.setState({ profileImagesLoaded: true })
               )
-            }}
-          </Query>
-        </ContentContainer>
-      </OrganizerListContainer>
+
+              loading = true
+              organizers = []
+            }
+
+            return (
+              <>
+                {loading && <Loader text="Fetching organizers..." />}
+                {error && `error: ${error.message}`}
+                <List>
+                  <PoseGroup animateOnMount={true}>
+                    {organizers.map((organizer, i) => (
+                      <ListItem key={i} i={i}>
+                        <OrganizerCard organizer={organizer} />
+                      </ListItem>
+                    ))}
+                  </PoseGroup>
+                </List>
+              </>
+            )
+          }}
+        </Query>
+      </ContentContainer>
+    )
+  }
+
+  private loadProfileImages(organizers: IOrganizer[]): Promise<any> {
+    return Promise.all(
+      organizers.map(
+        o =>
+          new Promise(resolve => {
+            const img = new Image()
+            img.onload = resolve
+            img.src = o.twitter.profileImageUrl
+          })
+      )
     )
   }
 }

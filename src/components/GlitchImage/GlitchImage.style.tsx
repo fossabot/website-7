@@ -3,23 +3,23 @@ import styled, { keyframes } from 'react-emotion'
 const offsetHorizontal = 4
 const offsetVertical = 2
 
-const glitchAnimText = keyframes`
-	40% {
-		transform: translate3d(calc(-1 * ${offsetHorizontal}),0,0) scale3d(-1,-1,1);
-		clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%);
-  }
-	42% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
-	44% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
-	45% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
-	46% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
-	47% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
-	49% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
-	48% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
-	49.9% { transform: translate3d(calc(-1 * ${offsetHorizontal}),0,0) scale3d(-1,-1,1); }
-	50%, 100% {
-		transform: translate3d(0,0,0) scale3d(1,1,1);
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }`
+// const glitchAnimText = keyframes`
+// 	40% {
+// 		transform: translate3d(calc(-1 * ${offsetHorizontal}),0,0) scale3d(-1,-1,1);
+// 		clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%);
+//   }
+// 	42% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+// 	44% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+// 	45% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
+// 	46% { clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%); }
+// 	47% { clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%); }
+// 	49% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+// 	48% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); }
+// 	49.9% { transform: translate3d(calc(-1 * ${offsetHorizontal}),0,0) scale3d(-1,-1,1); }
+// 	50%, 100% {
+// 		transform: translate3d(0,0,0) scale3d(1,1,1);
+// 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+//   }`
 
 const glitchAnimation1 = keyframes`
 	0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
@@ -98,14 +98,7 @@ const exclusionAnimation = keyframes`
 export const Image = styled.div<{ src: string }>`
   width: calc(100% + 2 * ${offsetHorizontal}px);
   height: calc(100% + 2 * ${offsetVertical}px);
-  background-image: linear-gradient(
-      to bottom,
-      rgba(233, 242, 245, 0.2) 0%,
-      rgba(66, 119, 115, 0.2) 70%,
-      rgba(0, 0, 0, 1) 83%,
-      rgba(0, 0, 0, 1) 100%
-    ),
-    url(${props => props.src});
+  background-image: url(${props => props.src});
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -133,23 +126,12 @@ export const Image = styled.div<{ src: string }>`
   }
 `
 
-export const Text = styled.span`
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  color: white;
-  font-size: 2.6rem;
-`
-
 export const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1;
   margin: 0 auto;
 
-  &:hover ${Text} {
-    animation: ${glitchAnimText} 2s linear infinite;
-  }
   &:hover ${Image} {
     opacity: 1;
   }

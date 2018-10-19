@@ -7,18 +7,18 @@ export default injectGlobal`
   }
   html {
     font-size: 10px;
+    overflow-x: hidden;
   }
   body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
+    font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #175377;
     background: #e9f2f5;
     font-size: 1.6rem;
+    line-height: 2.4rem;
     overflow-x: hidden;
   }
  `
