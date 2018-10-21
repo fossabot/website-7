@@ -25,6 +25,7 @@ export default class Separator extends Component<ISeparatorProps> {
           border-width: ${heightVw}vw 100vw 0 0;
           border-color: ${topColor} ${bottomColor} transparent transparent;
           transform: rotateY(${reverse ? 180 : 0}deg);
+          z-index: 2;
         `}
       />
     )

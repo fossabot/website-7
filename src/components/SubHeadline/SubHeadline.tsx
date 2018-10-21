@@ -5,20 +5,21 @@ const H2 = styled.h2`
   margin: 5rem 0 4rem 0;
   color: #12223c;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   text-transform: uppercase;
   font-weight: 300;
-  padding: 0 3rem 0.5rem 3rem;
+  padding: 0 3rem;
   border-bottom: 2px solid #82bfb7;
   display: inline-block;
+  font-family: Raleway;
 
-  @media (min-width: 550px) {
-    font-size: 2.5rem;
-    padding: 0 4rem 0.5rem 4rem;
+  @media (min-width: 550px) and (max-width: 799px) {
+    font-size: 3.6rem;
+    padding: 0 4rem;
   }
-  @media (min-width: 750px) {
-    font-size: 3rem;
-    padding: 0 5rem 0.5rem 5rem;
+  @media (min-width: 800px) {
+    font-size: 4rem;
+    padding: 0 5rem;
   }
 `
 

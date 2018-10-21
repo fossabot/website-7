@@ -48,9 +48,18 @@ class Header extends Component {
         <p
           css={`
             text-align: center;
+            margin-bottom: 5rem;
+            font-size: 1.8rem;
+
+            @media (min-width: 550px) and (max-width: 799px) {
+              font-size: 2rem;
+            }
+            @media (min-width: 800px) {
+              font-size: 2.2rem;
+            }
           `}
         >
-          Website coming soon!
+          Welcome to Paderborn.js – the JavaScript Meetup in Paderborn.
         </p>
       </ContentContainer>
     )

@@ -3,7 +3,7 @@ import posed from 'react-pose'
 
 export const List = styled.ol`
   list-style-type: none;
-  margin: 0 0 5rem 0;
+  margin: 0 -1.5rem 5rem -1.5rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;

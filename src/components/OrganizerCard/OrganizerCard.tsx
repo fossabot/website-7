@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IOrganizer from '../../interfaces/IOrganizer'
 import TwitterLink from '../TwitterLink/TwitterLink'
-import { Card, Description, ProfileImage, Text } from './OrganizerCard.styles'
+import { Card, Name, ProfileImage, Text } from './OrganizerCard.styles'
 
 interface IOrganizerCardProps {
   organizer: IOrganizer
@@ -19,12 +19,16 @@ export default class OrganizerCard extends Component<IOrganizerCardProps> {
       <Card>
         <ProfileImage
           src={profileImageUrl}
-          text={name}
           alt={`twitter profile image of @${handle}`}
         />
         <Text>
+          <Name>{name}</Name>
           <TwitterLink handle={handle} />
-          <Description>{description}</Description>
+          <p>
+            {name === 'Christoph Werner'
+              ? 'freelance consultant, developer advocate @dSPACEglobal, founder & organizer @PaderbornJS, creator @TekTalks'
+              : description}
+          </p>
         </Text>
       </Card>
     )

@@ -1,21 +1,16 @@
 import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import styled from 'react-emotion'
 import IEvent from '../../interfaces/IEvent'
+import ContentContainer from '../ContentContainer/ContentContainer'
 import Loader from '../Loader/Loader'
 import SubHeadline from '../SubHeadline/SubHeadline'
-
-const UpcomingEventsListContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-`
 
 class UpcomingEventsList extends Component {
   public render() {
     return (
-      <UpcomingEventsListContainer>
-        <SubHeadline>Upcoming Events</SubHeadline>
+      <ContentContainer>
+        <SubHeadline>Next Event</SubHeadline>
         <Query<{ upcomingEvents: IEvent[] }>
           pollInterval={1800000}
           query={gql`
@@ -36,7 +31,11 @@ class UpcomingEventsList extends Component {
             }
           `}
         >
-          {({ loading, error, data }) => {
+          {({
+            loading,
+            error,
+            data: { upcomingEvents = [] } = { upcomingEvents: [] },
+          }) => {
             if (loading || !data) {
               return <Loader text="Fetching events..." />
             }
@@ -44,29 +43,32 @@ class UpcomingEventsList extends Component {
               return `error: ${error.message}`
             }
             return (
-              <>
-                <Loader text="Fetching events..." />
-                <ol>
-                  {data.upcomingEvents.map(
-                    ({ date, goingCount, url, venue: { lat, lon } }, i) => (
-                      <li key={i}>
-                        {date}
-                        <br />
-                        going: {goingCount}
-                        <br />
-                        <a href={url}>{url}</a>
-                        <br />
-                        venue {lat}/{lon}
-                        <hr />
-                      </li>
-                    )
-                  )}
-                </ol>
-              </>
+              <ol
+                css={`
+                  margin: 0;
+                  padding: 0;
+                  list-style-type: none;
+                  margin-bottom: 5rem;
+                `}
+              >
+                {data.upcomingEvents.map(
+                  ({ date, goingCount, url, venue: { lat, lon } }, i) => (
+                    <li key={i}>
+                      {date}
+                      <br />
+                      going: {goingCount}
+                      <br />
+                      <a href={url}>{url}</a>
+                      <br />
+                      venue {lat}/{lon}
+                    </li>
+                  )
+                )}
+              </ol>
             )
           }}
         </Query>
-      </UpcomingEventsListContainer>
+      </ContentContainer>
     )
   }
 }

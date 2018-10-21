@@ -22,7 +22,11 @@ const organizerQuery = gql`
   }
 `
 
-class OrganizerList extends Component {
+interface IOrganizerListProps {
+  backgroundColor?: string
+}
+
+class OrganizerList extends Component<IOrganizerListProps> {
   public state = {
     profileImagesLoaded: false,
   }
@@ -31,7 +35,7 @@ class OrganizerList extends Component {
     const { profileImagesLoaded } = this.state
 
     return (
-      <ContentContainer>
+      <ContentContainer backgroundColor={this.props.backgroundColor}>
         <SubHeadline>Organizers</SubHeadline>
         <Query<{ organizers: IOrganizer[] }>
           pollInterval={3600000}
@@ -57,15 +61,17 @@ class OrganizerList extends Component {
               <>
                 {loading && <Loader text="Fetching organizers..." />}
                 {error && `error: ${error.message}`}
-                <List>
-                  <PoseGroup animateOnMount={true}>
-                    {organizers.map((organizer, i) => (
-                      <ListItem key={i} i={i}>
-                        <OrganizerCard organizer={organizer} />
-                      </ListItem>
-                    ))}
-                  </PoseGroup>
-                </List>
+                {organizers.length && (
+                  <List>
+                    <PoseGroup animateOnMount={true}>
+                      {organizers.map((organizer, i) => (
+                        <ListItem key={i} i={i}>
+                          <OrganizerCard organizer={organizer} />
+                        </ListItem>
+                      ))}
+                    </PoseGroup>
+                  </List>
+                )}
               </>
             )
           }}

@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
-import { ContentContainerDiv } from './ContentContainer.style'
+import { Inner, Outer } from './ContentContainer.style'
 
-export default class ContentContainer extends Component {
+export interface IContentContainerProps {
+  backgroundColor?: string
+}
+
+export default class ContentContainer extends Component<
+  IContentContainerProps
+> {
   public render() {
-    return <ContentContainerDiv>{this.props.children}</ContentContainerDiv>
+    return (
+      <Outer backgroundColor={this.props.backgroundColor}>
+        <Inner>{this.props.children}</Inner>
+      </Outer>
+    )
   }
 }

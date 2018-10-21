@@ -4,7 +4,6 @@ import { Image, ImageContainer } from './GlitchImage.style'
 export interface IGlitchImageProps {
   alt: string
   className?: string
-  glitches: boolean
   src: string
 }
 
