@@ -3,11 +3,10 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { PoseGroup } from 'react-pose'
 import IOrganizer from '../../interfaces/IOrganizer'
+import AnimatedSection from '../AnimatedSection/AnimatedSection'
 import ContentContainer from '../ContentContainer/ContentContainer'
-import Loader from '../Loader/Loader'
 import OrganizerCard from '../OrganizerCard/OrganizerCard'
-import SubHeadline from '../SubHeadline/SubHeadline'
-import { List, ListItem } from './OrganizerList.styles'
+import { List, ListItem } from './OrganizerList.style'
 
 const organizerQuery = gql`
   query {
@@ -23,7 +22,7 @@ const organizerQuery = gql`
 `
 
 interface IOrganizerListProps {
-  backgroundColor?: string
+  background?: string
 }
 
 class OrganizerList extends Component<IOrganizerListProps> {
@@ -35,8 +34,11 @@ class OrganizerList extends Component<IOrganizerListProps> {
     const { profileImagesLoaded } = this.state
 
     return (
-      <ContentContainer backgroundColor={this.props.backgroundColor}>
-        <SubHeadline>Organizers</SubHeadline>
+      <ContentContainer
+        background={this.props.background}
+        slantTop={2}
+        slantBottom={-6}
+      >
         <Query<{ organizers: IOrganizer[] }>
           pollInterval={3600000}
           query={organizerQuery}
@@ -58,22 +60,45 @@ class OrganizerList extends Component<IOrganizerListProps> {
             }
 
             return (
-              <>
-                {loading && <Loader text="Fetching organizers..." />}
-                {error && `error: ${error.message}`}
+              <AnimatedSection
+                headline="Organizers"
+                isLoading={loading}
+                delayLoading={1000}
+              >
                 {organizers.length && (
                   <List>
                     <PoseGroup animateOnMount={true}>
-                      {organizers.map((organizer, i) => (
-                        <ListItem key={i} i={i}>
-                          <OrganizerCard organizer={organizer} />
-                        </ListItem>
-                      ))}
+                      {organizers.map((organizer: IOrganizer, i: number) => {
+                        console.log(i)
+                        return (
+                          <ListItem key={i} itemIndex={i}>
+                            <OrganizerCard organizer={organizer} />
+                          </ListItem>
+                        )
+                      })}
                     </PoseGroup>
                   </List>
                 )}
-              </>
+              </AnimatedSection>
             )
+
+            // return (
+            //   <>
+            //     {loading && <Loader text="Fetching organizers..." />}
+            //     {error && `error: ${error.message}`}
+            //     {organizers.length && (
+            //       <List>
+            //         <PoseGroup animateOnMount={true}>
+            //           {organizers.map((organizer, i) => (
+            //             <ListItem key={i} index={i}>
+            //               <OrganizerCard organizer={organizer} />
+            //             </ListItem>
+            //           ))}
+            //         </PoseGroup>
+            //       </List>
+            //     )}
+            //   </>
+            // )
           }}
         </Query>
       </ContentContainer>

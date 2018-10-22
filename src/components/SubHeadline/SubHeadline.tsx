@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'react-emotion'
 
 const H2 = styled.h2`
-  margin: 5rem 0 4rem 0;
+  margin: 0 0 2.4rem 0;
   color: #12223c;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.4rem;
   text-transform: uppercase;
   font-weight: 300;
   padding: 0 3rem;
@@ -14,11 +14,13 @@ const H2 = styled.h2`
   font-family: Raleway;
 
   @media (min-width: 550px) and (max-width: 799px) {
-    font-size: 3.6rem;
+    margin: 0 0 2.7rem 0;
+    font-size: 2.7rem;
     padding: 0 4rem;
   }
   @media (min-width: 800px) {
-    font-size: 4rem;
+    margin: 0 0 3rem 0;
+    font-size: 3rem;
     padding: 0 5rem;
   }
 `

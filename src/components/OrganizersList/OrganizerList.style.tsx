@@ -1,28 +1,21 @@
 import styled from 'react-emotion'
 import posed from 'react-pose'
 
-export const List = styled.ol`
-  list-style-type: none;
-  margin: 0 -1.5rem 5rem -1.5rem;
+export const List = styled.div`
+  margin: 0 -1.5rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
 `
 
-interface IListItemProps {
-  i: number
-}
-
 export const ListItem = styled(
-  posed.li({
+  posed.div({
     enter: {
-      delay: (props: IListItemProps) => props.i * 25,
+      delay: (props: any) => props.itemIndex * 50,
       opacity: 1,
       scale: 1,
       transition: {
-        // material standard easing
         opacity: { ease: [0.4, 0.0, 0.2, 1], duration: 150 },
-        // material decelerate easing
         scale: { ease: [0.0, 0.0, 0.2, 1], duration: 150 },
       },
     },
@@ -31,7 +24,7 @@ export const ListItem = styled(
       scale: 0.95,
     },
   })
-)<IListItemProps>`
+)`
   vertical-align: top;
   margin-bottom: 1.2rem;
   width: 100%;

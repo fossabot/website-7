@@ -36,7 +36,6 @@
     "react-helmet": "^5.2.0",
     "react-pose": "^3.3.6",
     "react-scripts": "2.0.5",
-    "react-sizeme": "^2.5.2",
     "typeface-raleway": "^0.0.54"
   },
   "devDependencies": {

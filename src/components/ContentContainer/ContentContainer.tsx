@@ -1,18 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Inner, Outer } from './ContentContainer.style'
 
+export type SlantValue =
+  | -8
+  | -7
+  | -6
+  | -5
+  | -4
+  | -3
+  | -2
+  | -1
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+
 export interface IContentContainerProps {
-  backgroundColor?: string
+  background?: string
+  slantBottom?: SlantValue
+  slantTop?: SlantValue
 }
 
-export default class ContentContainer extends Component<
-  IContentContainerProps
-> {
-  public render() {
-    return (
-      <Outer backgroundColor={this.props.backgroundColor}>
-        <Inner>{this.props.children}</Inner>
-      </Outer>
-    )
-  }
-}
+const ContentContainer: React.SFC<IContentContainerProps> = ({
+  background,
+  children,
+  slantBottom,
+  slantTop,
+}) => (
+  <Outer background={background} slantBottom={slantBottom} slantTop={slantTop}>
+    <Inner>{children}</Inner>
+  </Outer>
+)
+
+export default ContentContainer
