@@ -8,7 +8,7 @@ import ContentContainer from '../ContentContainer/ContentContainer'
 class UpcomingEvents extends Component {
   public render() {
     return (
-      <ContentContainer background="#fff" slantTop={1} slantBottom={-3}>
+      <ContentContainer background="#fff" slantTop={0} slantBottom={-2}>
         <Query<{ upcomingEvents: IEvent[] }>
           pollInterval={1800000}
           query={gql`

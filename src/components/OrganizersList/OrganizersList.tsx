@@ -37,7 +37,7 @@ class OrganizerList extends Component<IOrganizerListProps> {
       <ContentContainer
         background={this.props.background}
         slantTop={2}
-        slantBottom={-6}
+        slantBottom={-1}
       >
         <Query<{ organizers: IOrganizer[] }>
           pollInterval={3600000}
@@ -81,24 +81,6 @@ class OrganizerList extends Component<IOrganizerListProps> {
                 )}
               </AnimatedSection>
             )
-
-            // return (
-            //   <>
-            //     {loading && <Loader text="Fetching organizers..." />}
-            //     {error && `error: ${error.message}`}
-            //     {organizers.length && (
-            //       <List>
-            //         <PoseGroup animateOnMount={true}>
-            //           {organizers.map((organizer, i) => (
-            //             <ListItem key={i} index={i}>
-            //               <OrganizerCard organizer={organizer} />
-            //             </ListItem>
-            //           ))}
-            //         </PoseGroup>
-            //       </List>
-            //     )}
-            //   </>
-            // )
           }}
         </Query>
       </ContentContainer>

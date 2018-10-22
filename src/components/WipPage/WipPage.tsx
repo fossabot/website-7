@@ -31,7 +31,7 @@ class WipPage extends Component<RouteComponentProps> {
           <SubHeadline>Location</SubHeadline>
           <p>Embedded Maps</p>
         </ContentContainer>
-        <ContentContainer background="#fff" slantTop={3} slantBottom={-1}>
+        <ContentContainer background="#fff" slantTop={1} slantBottom={-3}>
           <SubHeadline>Sponsors</SubHeadline>
           <p>Hosting, Food/Drinks, Domain/Meetup</p>
         </ContentContainer>
