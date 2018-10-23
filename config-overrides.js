@@ -1,16 +1,18 @@
+const { injectBabelPlugin } = require('react-app-rewired')
 const { rewireEmotion } = require('react-app-rewire-emotion')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const {
   rewireWebpack: rewireTypescript,
   rewireJest: rewireTypescriptJest,
   rewireTSLint,
 } = require('react-app-rewire-typescript-babel-preset')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
 
 module.exports = {
   webpack: function(config, env) {
+    config = injectBabelPlugin('polished', config)
     config = rewireTypescript(config)
     config = rewireTSLint(config /* {} - optional tslint-loader options */)
+
     if (env === 'production' || env === 'test') {
       config = rewireEmotion(config, env, { hoist: true })
     } else {

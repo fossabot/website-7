@@ -4,9 +4,11 @@ import { Query } from 'react-apollo'
 import { PoseGroup } from 'react-pose'
 import IOrganizer from '../../interfaces/IOrganizer'
 import AnimatedSection from '../AnimatedSection/AnimatedSection'
-import ContentContainer from '../ContentContainer/ContentContainer'
+import ContentContainer, {
+  IContentContainerProps,
+} from '../ContentContainer/ContentContainer'
 import OrganizerCard from '../OrganizerCard/OrganizerCard'
-import { List, ListItem } from './OrganizerList.style'
+import { List, ListItem } from './OrganizerSection.style'
 
 const organizerQuery = gql`
   query {
@@ -21,11 +23,7 @@ const organizerQuery = gql`
   }
 `
 
-interface IOrganizerListProps {
-  background?: string
-}
-
-class OrganizerList extends Component<IOrganizerListProps> {
+class OrganizerSection extends Component<IContentContainerProps> {
   public state = {
     profileImagesLoaded: false,
   }
@@ -36,8 +34,8 @@ class OrganizerList extends Component<IOrganizerListProps> {
     return (
       <ContentContainer
         background={this.props.background}
-        slantTop={2}
-        slantBottom={-1}
+        slantTop={this.props.slantTop}
+        slantBottom={this.props.slantBottom}
       >
         <Query<{ organizers: IOrganizer[] }>
           pollInterval={3600000}
@@ -65,20 +63,29 @@ class OrganizerList extends Component<IOrganizerListProps> {
                 isLoading={loading}
                 delayLoading={1000}
               >
-                {organizers.length && (
-                  <List>
-                    <PoseGroup animateOnMount={true}>
-                      {organizers.map((organizer: IOrganizer, i: number) => {
-                        console.log(i)
-                        return (
-                          <ListItem key={i} itemIndex={i}>
-                            <OrganizerCard organizer={organizer} />
-                          </ListItem>
-                        )
-                      })}
-                    </PoseGroup>
-                  </List>
-                )}
+                <p
+                  css={`
+                    text-align: center;
+                  `}
+                >
+                  Please get in touch with the organizers with any questions you
+                  have.
+                </p>
+                <List>
+                  <PoseGroup animateOnMount={true}>
+                    {organizers.length ? (
+                      organizers.map((organizer: IOrganizer, i: number) => (
+                        <ListItem key={i} itemIndex={i}>
+                          <OrganizerCard organizer={organizer} />
+                        </ListItem>
+                      ))
+                    ) : error ? (
+                      <div key={0}>{error.message}</div>
+                    ) : (
+                      <></>
+                    )}
+                  </PoseGroup>
+                </List>
               </AnimatedSection>
             )
           }}
@@ -101,4 +108,4 @@ class OrganizerList extends Component<IOrganizerListProps> {
   }
 }
 
-export default OrganizerList
+export default OrganizerSection

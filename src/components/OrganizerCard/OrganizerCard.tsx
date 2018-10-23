@@ -22,11 +22,7 @@ const OrganizerCard: React.SFC<IOrganizerCardProps> = ({
     <Text>
       <Name>{name}</Name>
       <TwitterLink handle={handle} />
-      <p>
-        {name === 'Christoph Werner'
-          ? 'freelance consultant, developer advocate @dSPACEglobal, founder & organizer @PaderbornJS, creator @TekTalks'
-          : description}
-      </p>
+      <p>{description}</p>
     </Text>
   </Card>
 )

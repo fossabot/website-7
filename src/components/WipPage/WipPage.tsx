@@ -1,12 +1,14 @@
 import { RouteComponentProps } from '@reach/router'
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
-import CodeOfConduct from '../CodeOfConduct/CodeOfConduct'
+import { darkBackground, lightBackground } from '../../style/colors'
+import AboutSection from '../AboutSection/AboutSection'
+import CocSection from '../CocSection/CocSection'
 import ContentContainer from '../ContentContainer/ContentContainer'
+import EventsSection from '../EventsSection/EventsSection'
 import Layout from '../Layout/Layout'
-import OrganizersList from '../OrganizersList/OrganizersList'
+import OrganizerSection from '../OrganizerSection/OrganizerSection'
 import SubHeadline from '../SubHeadline/SubHeadline'
-import UpcomingEvents from '../UpcomingEvents/UpcomingEvents'
 
 class WipPage extends Component<RouteComponentProps> {
   public render() {
@@ -15,27 +17,42 @@ class WipPage extends Component<RouteComponentProps> {
         <Helmet>
           <title>Work in Progress</title>
         </Helmet>
-        <UpcomingEvents />
-        <ContentContainer>
-          <SubHeadline>What is this all about?</SubHeadline>
-          <p>
-            - Meet monthly
-            <br />- Talk about new javaScript stuff, get to know new people
-            <br />- Links to: Twitter, Meetup, Talks Repo
-            <br />- English vs german
-            <br />
-          </p>
-        </ContentContainer>
-        <OrganizersList background="#d6e5ea" />
+        <EventsSection
+          background={lightBackground}
+          slantTop={0}
+          slantBottom={-2}
+        />
+        <AboutSection />
+        <OrganizerSection
+          background={darkBackground}
+          slantTop={2}
+          slantBottom={-1}
+        />
         <ContentContainer>
           <SubHeadline>Location</SubHeadline>
-          <p>Embedded Maps</p>
+          {/* <!-- could also use osm/leaflet here --> */}
+          <iframe
+            width="600"
+            height="450"
+            style={{ border: 0 }}
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBWvxIB7Y1deoneeayLEEOpESijWy64ElA&q=dSPACE,Paderborn"
+          />
         </ContentContainer>
-        <ContentContainer background="#fff" slantTop={1} slantBottom={-3}>
+        <ContentContainer
+          background={lightBackground}
+          slantTop={1}
+          slantBottom={-3}
+        >
           <SubHeadline>Sponsors</SubHeadline>
-          <p>Hosting, Food/Drinks, Domain/Meetup</p>
+          <p>
+            We're looking for a location where we can regularly host our meetup.
+            Sponsors that provide drinks/snacks as well as expense
+            reimbursements for hosting, domains and the meetup.com account are
+            welcome and will be listed and linked both here and on the
+            meetup.com page.
+          </p>
         </ContentContainer>
-        <CodeOfConduct />
+        <CocSection />
       </Layout>
     )
   }

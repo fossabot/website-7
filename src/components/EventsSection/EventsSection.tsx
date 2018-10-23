@@ -3,12 +3,18 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import IEvent from '../../interfaces/IEvent'
 import AnimatedSection from '../AnimatedSection/AnimatedSection'
-import ContentContainer from '../ContentContainer/ContentContainer'
+import ContentContainer, {
+  IContentContainerProps,
+} from '../ContentContainer/ContentContainer'
 
-class UpcomingEvents extends Component {
+class EventsSection extends Component<IContentContainerProps> {
   public render() {
     return (
-      <ContentContainer background="#fff" slantTop={0} slantBottom={-2}>
+      <ContentContainer
+        background={this.props.background}
+        slantTop={this.props.slantTop}
+        slantBottom={this.props.slantBottom}
+      >
         <Query<{ upcomingEvents: IEvent[] }>
           pollInterval={1800000}
           query={gql`
@@ -40,21 +46,23 @@ class UpcomingEvents extends Component {
                 isLoading={loading}
                 delayLoading={1000}
               >
-                <ol>
-                  {upcomingEvents.map(
-                    ({ date, goingCount, url, venue: { lat, lon } }, i) => (
-                      <li key={i}>
-                        {date}
-                        <br />
-                        going: {goingCount}
-                        <br />
-                        <a href={url}>{url}</a>
-                        <br />
-                        venue {lat}/{lon}
-                      </li>
+                {upcomingEvents.length
+                  ? upcomingEvents.map(
+                      ({ date, goingCount, url, venue: { lat, lon } }, i) => (
+                        <div key={i}>
+                          {date}
+                          <br />
+                          going: {goingCount}
+                          <br />
+                          <a href={url}>{url}</a>
+                          <br />
+                          venue {lat}/{lon}
+                        </div>
+                      )
                     )
-                  )}
-                </ol>
+                  : error
+                    ? error.message
+                    : ''}
               </AnimatedSection>
             )
           }}
@@ -64,4 +72,4 @@ class UpcomingEvents extends Component {
   }
 }
 
-export default UpcomingEvents
+export default EventsSection

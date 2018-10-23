@@ -1,4 +1,5 @@
 import { injectGlobal } from 'react-emotion'
+import { background } from './colors'
 
 // This is the default CSS included in create-react-app.
 export default injectGlobal`
@@ -16,7 +17,7 @@ export default injectGlobal`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #175377;
-    background: #e9f2f5;
+    background: ${background};
     line-height: 1.625;
     overflow-x: hidden;
     font-size: 1.6rem;
@@ -33,6 +34,6 @@ export default injectGlobal`
     text-decoration: none;
   }
   p {
-    margin: 0;
+    margin: 0 0 2rem 0;
   }
  `

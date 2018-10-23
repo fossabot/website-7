@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import { background } from '../../style/colors'
 import { IContentContainerProps, SlantValue } from './ContentContainer'
 
 export const Inner = styled.div`
@@ -39,7 +40,8 @@ export const Outer = styled.section<IContentContainerProps>`
     content: ${props => (props.slantTop ? `''` : 'none')};
     height: ${props => abs(props.slantTop || 0)}vw;
     border-width: ${props => abs(props.slantTop || 0)}vw 100vw 0 0;
-    border-color: #e9f2f5 ${props => props.background} transparent transparent;
+    border-color: ${background} ${props => props.background} transparent
+      transparent;
     transform: rotateY(${props => ((props.slantTop || 0) < 0 ? 180 : 0)}deg);
   }
   &::after {
@@ -47,7 +49,8 @@ export const Outer = styled.section<IContentContainerProps>`
     content: ${props => (props.slantBottom ? `''` : 'none')};
     height: ${props => abs(props.slantBottom || 0)}vw;
     border-width: ${props => abs(props.slantBottom || 0)}vw 100vw 0 0;
-    border-color: ${props => props.background} #e9f2f5 transparent transparent;
+    border-color: ${props => props.background} ${background} transparent
+      transparent;
     transform: rotateY(${props => ((props.slantBottom || 0) < 0 ? 180 : 0)}deg);
   }
 `

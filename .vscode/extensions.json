@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "msjsdiag.debugger-for-chrome",
+    "editorconfig.editorconfig",
+    "codezombiech.gitignore",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    "rafamel.subtle-brackets",
+    "cssho.vscode-svgviewer",
+    "eg2.tslint",
+    "ms-vsliveshare.vsliveshare",
+    "jpoissonnier.vscode-styled-components",
+  ]
+}

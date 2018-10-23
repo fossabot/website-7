@@ -6,6 +6,10 @@ export const List = styled.div`
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+
+  @media (min-width: 550px) {
+    margin: 0;
+  }
 `
 
 export const ListItem = styled(

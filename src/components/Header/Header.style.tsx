@@ -17,7 +17,7 @@ export const LogoContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2em 0;
+  padding: 0 0 2em 0;
   color: #12223c;
 `
 
