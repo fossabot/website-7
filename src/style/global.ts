@@ -1,5 +1,5 @@
 import { injectGlobal } from 'react-emotion'
-import { background } from './colors'
+import { background, text } from './colors'
 
 // This is the default CSS included in create-react-app.
 export default injectGlobal`
@@ -16,7 +16,7 @@ export default injectGlobal`
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #175377;
+    color: ${text};
     background: ${background};
     line-height: 1.625;
     overflow-x: hidden;
@@ -35,5 +35,25 @@ export default injectGlobal`
   }
   p {
     margin: 0 0 2rem 0;
+  }
+  .leaflet-container {
+    border: 0.3rem solid white;
+    height: 50rem;
+    max-height: 100vw;
+    overflow: hidden;
+    margin: 0 -1.5rem;
+    font: inherit;
+
+    @media (min-width: 550px) {
+      margin: 0;
+    }
+  }
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    box-shadow: none;
+    color: ${text};
+  }
+  .leaflet-popup-close-button {
+    display: none;
   }
  `

@@ -2,9 +2,8 @@ import styled from 'react-emotion'
 import GlitchImage, { IGlitchImageProps } from '../GlitchImage/GlitchImage'
 
 export const Card = styled.div`
-  padding: 0.5rem;
+  padding: 0.3rem;
   background: #fff;
-  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   height: 100%;
 `
 

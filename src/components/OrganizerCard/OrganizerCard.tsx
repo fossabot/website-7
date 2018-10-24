@@ -1,7 +1,7 @@
 import React from 'react'
 import IOrganizer from '../../interfaces/IOrganizer'
 import TwitterLink from '../TwitterLink/TwitterLink'
-import { Card, Name, ProfileImage, Text } from './OrganizerCard.styles'
+import { Card, Name, ProfileImage, Text } from './OrganizerCard.style'
 
 export interface IOrganizerCardProps {
   organizer: IOrganizer

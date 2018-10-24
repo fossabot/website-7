@@ -4,3 +4,5 @@ export const background = '#e9f2f5'
 
 export const lightBackground = lighten(0.06, background)
 export const darkBackground = darken(0.06, background)
+
+export const text = '#175377'
