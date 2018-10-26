@@ -6,6 +6,7 @@ import AnimatedSection from '../AnimatedSection/AnimatedSection'
 import ContentContainer, {
   IContentContainerProps,
 } from '../ContentContainer/ContentContainer'
+import Link from '../Link/Link'
 
 class EventsSection extends Component<IContentContainerProps> {
   public render() {
@@ -54,7 +55,7 @@ class EventsSection extends Component<IContentContainerProps> {
                           <br />
                           going: {goingCount}
                           <br />
-                          <a href={url}>{url}</a>
+                          <Link href={url}>{url}</Link>
                           <br />
                           venue {lat}/{lon}
                         </div>

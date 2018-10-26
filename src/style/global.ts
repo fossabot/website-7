@@ -1,5 +1,5 @@
 import { injectGlobal } from 'react-emotion'
-import { background, text } from './colors'
+import { background, link, text } from './colors'
 
 // This is the default CSS included in create-react-app.
 export default injectGlobal`
@@ -30,7 +30,7 @@ export default injectGlobal`
     }
   }
   a, a:link, a:visited, a:focus, a:hover, a:active {
-    color: #4078c0;
+    color: ${link};
     text-decoration: none;
   }
   p {

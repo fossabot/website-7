@@ -1,7 +1,14 @@
 import React from 'react'
 import IOrganizer from '../../interfaces/IOrganizer'
-import TwitterLink from '../TwitterLink/TwitterLink'
-import { Card, Name, ProfileImage, Text } from './OrganizerCard.style'
+import Link from '../Link/Link'
+import {
+  Card,
+  LinkWrapper,
+  Name,
+  ProfileImage,
+  Text,
+  TwitterLogo,
+} from './OrganizerCard.style'
 
 export interface IOrganizerCardProps {
   organizer: IOrganizer
@@ -21,7 +28,12 @@ const OrganizerCard: React.SFC<IOrganizerCardProps> = ({
     />
     <Text>
       <Name>{name}</Name>
-      <TwitterLink handle={handle} />
+      <LinkWrapper>
+        <Link href={`http://twitter.com/${handle}`}>
+          <TwitterLogo />
+          {handle}
+        </Link>
+      </LinkWrapper>
       <p>{description}</p>
     </Text>
   </Card>

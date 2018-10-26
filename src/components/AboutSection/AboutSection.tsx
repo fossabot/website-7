@@ -1,5 +1,6 @@
 import React from 'react'
 import ContentContainer from '../ContentContainer/ContentContainer'
+import Link from '../Link/Link'
 import SubHeadline from '../SubHeadline/SubHeadline'
 import { ColumnWrapper } from './AboutSection.style'
 
@@ -17,16 +18,16 @@ const AboutSection: React.SFC = () => (
         JavaScript and the community around it. New speakers, experienced
         speakers, and everyone in between. If you have an idea you aren't sure
         about, just reach out or add it as an issue in our{' '}
-        <a href="https://github.com/paderbornjs/talks">
+        <Link href="https://github.com/paderbornjs/talks">
           Paderborn.js talks repository
-        </a>
+        </Link>
         !
       </p>
       <p>
-        Join the <a href="#">Meetup community</a> to get in contact with both
-        organizers and other members of the community! Also, feel free to{' '}
-        <a href="https://twitter.com/paderbornjs">follow us on Twitter</a> or
-        tweet about our events using the hashtag #paderbornjs!
+        Join the <Link href="#">Meetup community</Link> to get in contact with
+        both organizers and other members of the community! Also, feel free to{' '}
+        <Link href="https://twitter.com/paderbornjs">follow us on Twitter</Link>{' '}
+        or tweet about our events using the hashtag #paderbornjs!
       </p>
       <p>
         This meetup is primarily in german, but if we have any non-german

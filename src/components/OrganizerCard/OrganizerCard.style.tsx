@@ -1,5 +1,6 @@
 import styled from 'react-emotion'
 import GlitchImage, { IGlitchImageProps } from '../GlitchImage/GlitchImage'
+import { ReactComponent } from './twitter.svg'
 
 export const Card = styled.div`
   padding: 0.3rem;
@@ -32,4 +33,14 @@ export const Text = styled.div`
 export const ProfileImage = styled(GlitchImage)<IGlitchImageProps>`
   width: 100%;
   height: 26rem;
+`
+
+export const LinkWrapper = styled.div`
+  margin: 0.5rem 0 1rem 0;
+`
+
+export const TwitterLogo = styled(ReactComponent)`
+  fill: #1da1f2;
+  height: 1.4rem;
+  margin-right: 0.3rem;
 `

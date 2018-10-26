@@ -1,5 +1,6 @@
 import React from 'react'
 import ContentContainer from '../ContentContainer/ContentContainer'
+import Link from '../Link/Link'
 import SubHeadline from '../SubHeadline/SubHeadline'
 
 const CocSection: React.SFC = () => (
@@ -19,7 +20,8 @@ const CocSection: React.SFC = () => (
     <p>
       For details on what kinds of behaviour are not tolerated and consequences
       for violating these rules, we refer to the{' '}
-      <a href="http://berlincodeofconduct.org/">Berlin Code of Conduct</a>.
+      <Link href="http://berlincodeofconduct.org/">Berlin Code of Conduct</Link>
+      .
     </p>
   </ContentContainer>
 )
