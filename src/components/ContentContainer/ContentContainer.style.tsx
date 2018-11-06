@@ -22,6 +22,7 @@ const abs = (slant: SlantValue) => Math.abs(slant as number)
 export const Outer = styled.section<IContentContainerProps>`
   position: relative;
   background: ${props => props.background || 'transparent'};
+  z-index: 0;
 
   margin: ${props => abs(props.slantTop || 0)}vw 0
     ${props => abs(props.slantBottom || 0)}vw 0;

@@ -13,7 +13,7 @@ export const List = styled.div`
 `
 
 export const ListItem = styled(
-  posed.div({
+  posed.article({
     enter: {
       delay: (props: any) => props.itemIndex * 50,
       opacity: 1,

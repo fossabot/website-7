@@ -27,7 +27,15 @@ const AboutSection: React.SFC = () => (
         Join the <Link href="#">Meetup community</Link> to get in contact with
         both organizers and other members of the community! Also, feel free to{' '}
         <Link href="https://twitter.com/paderbornjs">follow us on Twitter</Link>{' '}
-        or tweet about our events using the hashtag #paderbornjs!
+        or tweet about our events using the hashtag{' '}
+        <span
+          css={`
+            font-weight: 300;
+          `}
+        >
+          #paderbornjs
+        </span>
+        !
       </p>
       <p>
         This meetup is primarily in german, but if we have any non-german

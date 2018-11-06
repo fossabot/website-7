@@ -8,7 +8,7 @@ export interface IAnimatedSectionProps {
   backgroundColor?: string
   delayLoading: number
   duration: number
-  headline: string
+  headline?: string
   isLoading: boolean
 }
 
@@ -59,9 +59,13 @@ export default class AnimatedSection extends Component<
               : []),
             ...(!isLoading && pose === 'done'
               ? [
-                  <Child i={0} key="headline" duration={duration}>
-                    <SubHeadline>{headline}</SubHeadline>
-                  </Child>,
+                  ...(headline
+                    ? [
+                        <Child i={0} key="headline" duration={duration}>
+                          <SubHeadline>{headline}</SubHeadline>
+                        </Child>,
+                      ]
+                    : []),
                   <Child i={1} key="content" duration={duration}>
                     {children}
                   </Child>,

@@ -1,5 +1,5 @@
 export default interface IEvent {
-  date: Date
+  date: string
   goingCount: number
   url: string
   venue: {
