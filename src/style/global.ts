@@ -22,10 +22,10 @@ export default injectGlobal`
     overflow-x: hidden;
     font-size: 1.6rem;
 
-    @media (min-width: 550px) and (max-width: 799px) {
+    @media (min-width: 550px) and (max-width: 767px) {
       font-size: 1.7rem;
     }
-    @media (min-width: 800px) {
+    @media (min-width: 768px) {
       font-size: 1.8rem;
     }
   }

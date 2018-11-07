@@ -33,7 +33,7 @@ export const ListItem = styled(
   margin-bottom: 1.2rem;
   width: 100%;
 
-  @media (min-width: 550px) and (max-width: 799px) {
+  @media (min-width: 550px) and (max-width: 767px) {
     width: 49%;
     margin-left: 1%;
     margin-right: 1%;
@@ -48,7 +48,7 @@ export const ListItem = styled(
     }
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     width: 32%;
     margin-left: 1%;
     margin-right: 1%;

@@ -9,10 +9,10 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 550px) and (max-width: 799px) {
+  @media (min-width: 550px) and (max-width: 767px) {
     padding: 4rem;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     padding: 5rem;
   }
 `

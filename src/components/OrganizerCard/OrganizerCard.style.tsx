@@ -14,10 +14,10 @@ export const Name = styled.span`
   margin-top: 1.6rem;
   line-height: 1.25;
 
-  @media (min-width: 550px) and (max-width: 799px) {
+  @media (min-width: 550px) and (max-width: 767px) {
     font-size: 2.2rem;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     font-size: 2.4rem;
   }
 `

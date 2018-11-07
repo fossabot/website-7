@@ -5,8 +5,6 @@ interface ILinkProps {
   href: string
 }
 
-const Link: React.SFC<ILinkProps> = ({ children, href }) => (
-  <StyledLink href={href}>{children}</StyledLink>
-)
+const Link: React.SFC<ILinkProps> = props => <StyledLink {...props} />
 
 export default Link

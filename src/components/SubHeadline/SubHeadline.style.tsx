@@ -13,12 +13,12 @@ export const HeadlineText = styled.h2<ISubHeadlineProps>`
   display: inline-block;
   font-family: Raleway;
 
-  @media (min-width: 550px) and (max-width: 799px) {
+  @media (min-width: 550px) and (max-width: 767px) {
     margin: 0 0 2.7rem 0;
     font-size: 2.7rem;
     padding: 0 4rem;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     margin: 0 0 3rem 0;
     font-size: 3rem;
     padding: 0 5rem;

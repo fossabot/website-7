@@ -6,7 +6,7 @@ import { ColumnWrapper } from './AboutSection.style'
 
 const AboutSection: React.SFC = () => (
   <ContentContainer>
-    <SubHeadline>What is this all about?</SubHeadline>
+    <SubHeadline underline="#82a3bf">What is this all about?</SubHeadline>
     <ColumnWrapper>
       <p>
         Paderborn.js is a usergroup focused on JavaScript and related topics. We
