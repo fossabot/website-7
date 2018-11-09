@@ -6,6 +6,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Table of Contents
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/paderbornjs/website.svg)](https://greenkeeper.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpaderbornjs%2Fwebsite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpaderbornjs%2Fwebsite?ref=badge_shield)
 
 - [Updating to New Releases](#updating-to-new-releases)
 - [Sending Feedback](#sending-feedback)
@@ -2567,3 +2568,7 @@ If you're seeing this error, you're likely using an old version of `react-script
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebook/create-react-app/issues) or [contribute some!](https://github.com/facebook/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpaderbornjs%2Fwebsite.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpaderbornjs%2Fwebsite?ref=badge_large)
